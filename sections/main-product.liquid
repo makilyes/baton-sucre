@@ -74,8 +74,14 @@
           {%- case block.type -%}
           {%- when '@app' -%}
             {% render block %}
+          {%- when 'alert' -%}
+          <div class="product__alert-wrapper" style="background-color: {{ block.settings.background }}">
+            <button v-on:click="selection">
+              <p class="product__alert {% if block.settings.scroll_announcement == true %} scroll {% endif %}"> {{ block.settings.alert }} </p> 
+            </button>
+          </div>
           {%- when 'text' -%}
-            <p class="product__text{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}" {{ block.shopify_attributes }}>
+            <p class="product__text{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle {% endif %}" {{ block.shopify_attributes }}>
               {{- block.settings.text -}}
             </p>
           {%- when 'title' -%}
@@ -182,11 +188,29 @@
           {%- when 'variant_picker' -%}
             {%- unless product.has_only_default_variant -%}
               {%- if block.settings.picker_type == 'button' -%}
+
+
+
+
                 <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                   {%- for option in product.options_with_values -%}
                       <fieldset class="js product-form__input">
+
+
+
                         <legend class="form__label">{{ option.name }}</legend>
                         {%- for value in option.values -%}
+                          {%- if option.name == "Color" -%}
+                          <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                          name="{{ option.name }}"
+                          value="{{ value | escape }}"
+                          form="product-form-{{ section.id }}"
+                          {% if option.selected_value == value %}checked{% endif %}
+                    >
+                          <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}" > 
+                            <img src="{{ value | append:'.png' | file_url }}" alt=""> 
+                          </label>
+                          {%- else -%}
                           <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
                                 name="{{ option.name }}"
                                 value="{{ value | escape }}"
@@ -196,6 +220,7 @@
                           <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
                             {{ value }}
                           </label>
+                          {%- endif -%}
                         {%- endfor -%}
                       </fieldset>
                   {%- endfor -%}
@@ -413,6 +438,10 @@
     </modal-dialog>
   {%- endfor -%}
 </section>
+<div id="main-product">
+  <p>h1</p>
+</div>
+
 
 {% javascript %}
   class ProductModal extends ModalDialog {
@@ -463,6 +492,50 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "alert",
+      "name": "t:sections.main-product.blocks.alert.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "alert",
+          "default": "SAVE UP TO 30 %",
+          "label": "t:sections.main-product.blocks.alert.name"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "default": "#ffffff",
+          "label": "t:sections.image-banner.settings.color_scheme.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "scroll_announcement",
+          "label": "t:sections.main-product.blocks.scroll-alert.name",
+          "default": true
+        }
+      ]
     },
     {
       "type": "text",
@@ -734,3 +807,76 @@
   ]
 }
 {% endschema %}
+
+
+<script>
+
+  if (document.querySelector("#main-product")) {
+    const productForm = Vue.createApp({
+      delimiters: ["${", "}"],
+      data() {
+        return {
+          open: false,
+          variants: "",
+          selectedVariant: "",
+          selected: [],
+          form: {
+            selections: "",
+            options: "",
+          },
+        };
+      },
+      created() {
+
+        console.log("vueJS fonctionne correctement");
+
+        axios.get("/products/{{product.handle}}.js")
+        .then((results) => {
+
+          console.log(results);
+
+          this.form.options = results.data.options.map((item) => ({
+            ...item,
+            visible: false,
+          }));
+
+          this.variants = results.data.variants;
+          console.log("voici mes variantes")
+          console.log(this.variants);
+
+          results.data.options.map((item) => {
+            this.selected.push(item.values[0])
+          });
+          console.log(this.selected);
+
+          this.form.selections = [
+            this.selected[0] ? this.selected[0] : null,
+            this.selected[1] ? this.selected[1] : null,
+            this.selected[2] ? this.selected[2] : null,
+          ];
+
+          this.variants.forEach((variant, i) => {
+            if (
+              variant.option1 === this.form.selections[0] &&
+              variant.option2 === this.form.selections[1] &&
+              variant.option3 === this.form.selections[2]
+            ) {
+              this.selectedVariant = variant;
+            }
+          });
+
+          console.log(this.selectedVariant);
+
+        });
+      },
+      methods: {
+
+        selection: function(e) {
+          e.preventDefault();
+          console.log(coucou)
+        }
+      },
+      computed: {}
+    }).mount("#main-product");
+  }
+</script>

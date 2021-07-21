@@ -1084,6 +1084,15 @@
             }
           }
         },
+        "alert": {
+          "name": "Alert"
+        },
+        "scroll-alert": {
+          "name": "Scroll Alert"
+        },
+        "backgroundalert": {
+          "name": "Background Alert"
+        },
         "title": {
           "name": "Title"
         },

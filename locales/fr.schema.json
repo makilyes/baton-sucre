@@ -1093,6 +1093,15 @@
             }
           }
         },
+        "alert": {
+          "name": "Alerte"
+        },
+        "scroll-alert": {
+          "name": "Défilement Alerte"
+        },
+        "backgroundalert": {
+          "name": "Arrière Plan Alerte"
+        },
         "title": {
           "name": "Titre"
         },

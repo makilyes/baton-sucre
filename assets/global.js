@@ -514,6 +514,7 @@ class VariantSelects extends HTMLElement {
       this.updateVariantInput();
       this.renderProductInfo();
     }
+
   }
 
   updateOptions() {
@@ -522,10 +523,13 @@ class VariantSelects extends HTMLElement {
 
   updateMasterId() {
     this.currentVariant = this.getVariantData().find((variant) => {
+
       return !variant.options.map((option, index) => {
+        
         return this.options[index] === option;
       }).includes(false);
     });
+    console.log(this.currentVariant);
   }
 
   updateMedia() {
@@ -618,6 +622,7 @@ class VariantRadios extends VariantSelects {
   }
 
   updateOptions() {
+
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
     this.options = fieldsets.map((fieldset) => {
       return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
