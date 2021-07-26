@@ -153,13 +153,20 @@ fieldset.product-form__input .form__label {
   cursor: pointer;
 }
 
+.image-variant {
+  width: 10px;
+}
+
 .product-form__input input[type='radio'] + label:hover {
   border: 0.1rem solid rgb(var(--color-foreground));
 }
 
 .product-form__input input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
+  border: 0.2rem solid rgb(var(--color-foreground));
+}
+
+.product-form__variant-color-wrapper {
+  display: flex;
 }
 
 .product-form__input input[type='radio']:disabled + label {
@@ -761,4 +768,16 @@ a.product__text {
     -webkit-transform: translateX(-20%);
     transform: translateX(-20%);
   }
+}
+
+/* Variant Color image */
+
+.variant-color-image {
+  border-radius: 50px;
+  width: 30px;
+  border: solid 1px black;
+}
+
+.test-label {
+  padding: 0 !important;
 }
