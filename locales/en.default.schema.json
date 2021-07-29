@@ -1254,6 +1254,12 @@
         },
         "enable_video_looping": {
           "label": "Enable video looping"
+        },
+        "enable_color_swatch": {
+          "label": "Enable color swatch"
+        },
+        "info_color_swatch": {
+          "label": "insert the colors jpg in your assets folder"
         }
       }
     },

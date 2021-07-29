@@ -105,6 +105,7 @@
             <h1 class="product__title" {{ block.shopify_attributes }}>
               {{ product.title | escape }}
             </h1>
+
           {%- when 'price' -%}
             <div class="no-js-hidden" id="price-{{ section.id }}" {{ block.shopify_attributes }}>
               {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
@@ -115,12 +116,14 @@
                 {{ form | payment_terms }}
               {%- endform -%}
             </div>
+
           {%- when 'description' -%}
             {%- if product.description != blank -%}
               <div class="product__description rte">
                 {{ product.description }}
               </div>
             {%- endif -%}
+
           {%- when 'collapsible_tab' -%}
             <div class="product__accordion accordion" {{ block.shopify_attributes }}>
               <details>
@@ -138,36 +141,14 @@
                   {{ block.settings.page.content }}
                 </div>
               </details>
-            </div>
-          {%- when 'quantity_selector' -%}
-            <div class="product-form__input product-form__quantity" {{ block.shopify_attributes }}>
-              <label class="form__label" for="Quantity-{{ section.id }}">
-                {{ 'products.product.quantity.label' | t }}
-              </label>
-              <quantity-input class="quantity">
-                <button class="quantity__button no-js-hidden" name="minus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
-                  {% render 'icon-minus' %}
-                </button>
-                <input class="quantity__input"
-                    type="number"
-                    name="quantity"
-                    id="Quantity-{{ section.id }}"
-                    min="1"
-                    value="1"
-                    form="product-form-{{ section.id }}"
-                  >
-                <button class="quantity__button no-js-hidden" name="plus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
-                  {% render 'icon-plus' %}
-                </button>
-              </quantity-input>
-            </div>
+            </div>            
+
           {%- when 'popup' -%}
               <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-{{ block.id }}" {{ block.shopify_attributes }}>
                 <button id="ProductPopup-{{ block.id }}" class="product-popup-modal__button link" type="button" aria-haspopup="dialog">{{ block.settings.link_label | default: block.settings.page.title }}</button>
               </modal-opener>
               <a href="{{ block.settings.page.url }}" class="product-popup-modal__button link no-js">{{ block.settings.link_label }}</a>
+
           {%- when 'share' -%}
             <share-button class="share-button" {{ block.shopify_attributes }}>
               <button class="share-button__button button button--tertiary hidden">
@@ -202,48 +183,82 @@
               </details>
             </share-button>
             <script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+
           {%- when 'variant_picker' -%}
+          <div id="main-product">
             {%- unless product.has_only_default_variant -%}
               {%- if block.settings.picker_type == 'button' -%}
 
-
-
-
                 <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
-                  {%- for option in product.options_with_values -%}
-                      <fieldset class="js product-form__input">
+                  
+
+                  <form id="add-to-cart-form">
+                    <template v-for="(option, i) in form.options" :key="i">
+
+
+                      <div v-if="option.name == 'Color'"  class="product-option-row" >
+                        <div >
+                            ${option.name}: <span> ${selected[i]}</span> <span class="">  </span>
+                        </div>
+                        <div class="" >
+                            <template v-for="(value, index) in option.values">
+                              <div v-if="option.name == 'Color'" 
+                              @click="
+                                selected[i] = value;
+                                option.visible = false;
+                                form.selections[i] = value;
+                                selection(value)
+                              "
+                              >                                
+                                <img class="product-option-image-variant" :src="'//cdn.shopify.com/s/files/1/0582/2824/4664/t/3/assets/' + value + '.jpg'" alt="">
+                              </div>
+                            </template>
+                        </div>
+                      </div>
+
+
+                      <div v-else class="product-option-row">
+                        <div class="product-option-label" 
+                        @click="option.visible = !option.visible" 
+                        :class="{ labelActive : option.visible }"
+                        >
+                            ${option.name}: <span> ${selected[i]}</span> <span class="">  </span>
+                        </div>
+                        <div class="product-option-list" v-if="option.visible">
+                            <template v-for="(value, index) in option.values">
+                              <div v-if="option.name == 'Color'" 
+                              @click="
+                                selected[i] = value;
+                                option.visible = false;
+                                form.selections[i] = value;
+                                selection(value)
+                              "
+                              >
+                                <!-- {% assign asset_url =  asset_url  %} -->
+                                
+                                ${value}
+                              </div>
+                              <div v-else class="product-option-item"
+                              @click="
+                                selected[i] = value;
+                                option.visible = false;
+                                form.selections[i] = value;
+                                selection(value)
+                              "
+                              >
+                                ${value}
+                              </div>
+                            </template>
+                        </div>
+                      </div>
+                    </template>
+                    <button @click="addToCart" type="submit" name="add" id="add-to-cart" class="add-to-cart-button">
+                      Add to cart
+                    </button>
+                  </form>
 
 
 
-                        <legend class="form__label">{{ option.name }}</legend>
-                        {%- for value in option.values -%}
-                          {%- if option.name == "Color" -%}
-                          <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
-                          name="{{ option.name }}"
-                          value="{{ value | escape }}"
-                          form="product-form-{{ section.id }}"
-                          {% if option.selected_value == value %}checked{% endif %}
-                    >
-                          <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}" > 
-                            <img src="{{ value | append:'.png' | file_url }}" alt=""> 
-                          </label>
-                          {%- else -%}
-                          <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
-                                name="{{ option.name }}"
-                                value="{{ value | escape }}"
-                                form="product-form-{{ section.id }}"
-                                {% if option.selected_value == value %}checked{% endif %}
-                          >
-                          <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
-                            {{ value }}
-                          </label>
-                          {%- endif -%}
-                        {%- endfor -%}
-                      </fieldset>
-                  {%- endfor -%}
-                  <script type="application/json">
-                    {{ product.variants | json }}
-                  </script>
                 </variant-radios>
               {%- else -%}
                 <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
@@ -297,60 +312,14 @@
                 </div>
               </div>
             </noscript>
-          {%- when 'buy_buttons' -%}
-            <div {{ block.shopify_attributes }}>
-              <product-form class="product-form">
-                {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  <div class="product-form__buttons">
-                    <button
-                      type="submit"
-                      name="add"
-                      class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                    >
-                        {%- if product.selected_or_first_available_variant.available -%}
-                          {{ 'products.product.add_to_cart' | t }}
-                        {%- else -%}
-                          {{ 'products.product.sold_out' | t }}
-                        {%- endif -%}
-                    </button>
-                    {%- if block.settings.show_dynamic_checkout -%}
-                      {{ form | payment_button }}
-                    {%- endif -%}
-                  </div>
-                {%- endform -%}
-              </product-form>
-
-              {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
-
-              {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
-
-              <pickup-availability class="product__pickup-availabilities no-js-hidden"
-                {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}
-                data-base-url="{{ shop.url }}{{ routes.root_url }}"
-                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-                data-has-only-default-variant="{{ product.has_only_default_variant }}"
-              >
-                <template>
-                  <pickup-availability-preview class="pickup-availability-preview">
-                    {% render 'icon-unavailable' %}
-                    <div class="pickup-availability-info">
-                      <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
-                      <button class="pickup-availability-button link link--text underlined-link">{{ 'products.product.pickup_availability.refresh' | t }}</button>
-                    </div>
-                  </div>
-                </template>
-              </pickup-availability>
-            </div>
-
             <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
           {%- endcase -%}
         {%- endfor -%}
       </div>
+
+      </div>
     </div>
   </div>
-  {%- render 'cart-notification' -%}
 
   <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal">
     <div class="product-media-modal__dialog" role="dialog" aria-label="{{ 'products.modal.label' | t }}" aria-modal="true" tabindex="-1">
@@ -455,9 +424,7 @@
     </modal-dialog>
   {%- endfor -%}
 </section>
-<div id="main-product">
-  <p>h1</p>
-</div>
+
 
 
 {% javascript %}
@@ -597,11 +564,6 @@
       "limit": 1
     },
     {
-      "type": "quantity_selector",
-      "name": "t:sections.main-product.blocks.quantity_selector.name",
-      "limit": 1
-    },
-    {
       "type": "variant_picker",
       "name": "t:sections.main-product.blocks.variant_picker.name",
       "limit": 1,
@@ -611,30 +573,19 @@
           "id": "picker_type",
           "options": [
             {
-              "value": "dropdown",
-              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
-            },
-            {
               "value": "button",
               "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
             }
           ],
           "default": "button",
           "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
-        }
-      ]
-    },
-    {
-      "type": "buy_buttons",
-      "name": "t:sections.main-product.blocks.buy_buttons.name",
-      "limit": 1,
-      "settings": [
+        },
         {
           "type": "checkbox",
-          "id": "show_dynamic_checkout",
+          "id": "checkbox_colorSwatch",
           "default": true,
-          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+          "label": "t:sections.main-product.settings.enable_color_swatch",
+          "info": ""
         }
       ]
     },
@@ -879,6 +830,8 @@ const swiper = new Swiper(".swiper-container-{{- product.id -}}", {
             ...item,
             visible: false,
           }));
+          console.log("voici mes formOptions")
+          console.log(this.form.options);
 
           this.variants = results.data.variants;
           console.log("voici mes variantes")
@@ -910,13 +863,184 @@ const swiper = new Swiper(".swiper-container-{{- product.id -}}", {
         });
       },
       methods: {
+        addToCart(event) {
+          event.preventDefault();
 
-        selection: function(e) {
-          e.preventDefault();
-          console.log(coucou)
+          let selectedVariant;
+
+          this.variants.forEach((variant, i) => {
+            if (
+              variant.option1 === this.form.selections[0] &&
+              variant.option2 === this.form.selections[1] &&
+              variant.option3 === this.form.selections[2]
+            ) {
+              selectedVariant = variant;
+            }
+          });
+
+          this.variants.forEach;
+
+          let data = {
+            id: selectedVariant.id,
+            quantity: 1,
+          };
+
+          axios
+            .post("/cart/add.js", data)
+            .then((response) => {
+              store.getCart()
+            })
+            .then(() => {
+              toggleMiniCart.openCart()
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        selection(value) {
+            let selectedVariant;
+
+            this.variants.forEach((variant, i) => {
+              if (
+                variant.option1 === this.form.selections[0] &&
+                variant.option2 === this.form.selections[1] &&
+                variant.option3 === this.form.selections[2]
+              ) {
+                selectedVariant = variant;
+              }
+          });
+          console.log(selectedVariant)
+
+          console.log(selectedVariant.featured_image.position)
+          
+          swiper.slideTo(selectedVariant.featured_image.position)
         }
       },
-      computed: {}
+      computed: {
+        image() {
+          return this.selectedImage
+        }
+      }
+    }).mount("#main-product");
+  }
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  var swiper = new Swiper(".swiper-container-{{- product.id -}}", {
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 0,
+    loop: true,
+
+    breakpoints: {
+      600: {
+        allowTouchMove: false,
+        speed: 0,
+        navigation: {
+          nextEl: ".swiper-button-next-{{- product.id -}}",
+          prevEl: ".swiper-button-prev-{{- product.id -}}"
+        }
+      }
+    }
+  })
+
+
+  if (document.querySelector("#main-product")) {
+    const productForm = Vue.createApp({
+      delimiters: ["${", "}"],
+      data() {
+        return {
+          open: false,
+          variants: "",
+          selected: [],
+          selectedImage: "",
+          form: {
+            selections: "",
+            options: "",
+          },
+        };
+      },
+      created() {
+        axios.get("/products/{{ product.handle }}.js").then((results) => {
+          this.form.options = results.data.options.map((item) => ({
+            ...item,
+            visible: false,
+          }));
+          this.variants = results.data.variants;
+          results.data.options.map((item) =>
+            this.selected.push(item.values[0])
+          );
+          this.form.selections = [
+            this.selected[0] ? this.selected[0] : null,
+            this.selected[1] ? this.selected[1] : null,
+            this.selected[2] ? this.selected[2] : null,
+          ];
+        });
+      },
+      methods: {
+        addToCart(event) {
+          event.preventDefault();
+
+          let selectedVariant;
+
+          this.variants.forEach((variant, i) => {
+            if (
+              variant.option1 === this.form.selections[0] &&
+              variant.option2 === this.form.selections[1] &&
+              variant.option3 === this.form.selections[2]
+            ) {
+              selectedVariant = variant;
+            }
+          });
+
+          let data = {
+            id: selectedVariant.id,
+            quantity: 1,
+          };
+
+          axios
+            .post("/cart/add.js", data)
+            .then((response) => {
+              store.getCart();
+            })
+            .then(() => {
+              toggleMiniCart.openCart();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        selection(value) {
+            let selectedVariant;
+
+            this.variants.forEach((variant, i) => {
+              if (
+                variant.option1 === this.form.selections[0] &&
+                variant.option2 === this.form.selections[1] &&
+                variant.option3 === this.form.selections[2]
+              ) {
+                selectedVariant = variant;
+              }
+          });
+
+          console.log(selectedVariant.featured_image.position)
+          
+          swiper.slideTo(selectedVariant.featured_image.position)
+        }
+      },
+      computed: {
+        image() {
+          return this.selectedImage
+        }
+      }
     }).mount("#main-product");
   }
 </script>

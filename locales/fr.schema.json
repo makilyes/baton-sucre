@@ -1263,6 +1263,12 @@
         },
         "enable_sticky_info": {
           "label": "Activer les informations produits collées sur de grands écrans"
+        },
+        "enable_color_swatch": {
+          "label": "Activer le color swatch"
+        },
+        "info_color_swatch": {
+          "label": "insérer la couleur au format jpg dans le dossier asset"
         }
       },
       "name": "Informations produits"
