@@ -1085,7 +1085,15 @@
           }
         },
         "alert": {
-          "name": "Alert"
+          "name": "Alert",
+          "settings": {
+            "background_color": {
+              "label": "Background Color"
+            },
+            "font_color": {
+              "label": "Font Color"
+            }
+          }
         },
         "scroll-alert": {
           "name": "Scroll Alert"
@@ -1112,6 +1120,12 @@
               },
               "options__2": {
                 "label": "Button"
+              },
+              "enable_color_swatch": {
+                "label": "Enable color swatch"
+              },
+              "info_color_swatch": {
+                "label": "insert the colors jpg in your assets folder"
               }
             }
           }

@@ -153,9 +153,7 @@ fieldset.product-form__input .form__label {
   cursor: pointer;
 }
 
-.image-variant {
-  width: 10px;
-}
+
 
 .product-form__input input[type='radio'] + label:hover {
   border: 0.1rem solid rgb(var(--color-foreground));
@@ -177,6 +175,20 @@ fieldset.product-form__input .form__label {
 .product-form__input input[type='radio']:focus-visible + label {
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),
     0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
+}
+
+/* Color Swatch images */
+
+.product-option-image-variant {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.product-option__colorSwatchWrapper {
+  display: flex;
+  margin: 10px 0;
 }
 
 /* Fallback */
@@ -741,32 +753,32 @@ a.product__text {
 
 @-moz-keyframes scroll-left {
   0% {
-    -moz-transform: translateX(20%);
+    -moz-transform: translateX(100%);
   }
   100% {
-    -moz-transform: translateX(-20%);
+    -moz-transform: translateX(5%);
   }
 }
 
 @-webkit-keyframes scroll-left {
   0% {
-    -webkit-transform: translateX(20%);
+    -webkit-transform: translateX(100%);
   }
   100% {
-    -webkit-transform: translateX(-20%);
+    -webkit-transform: translateX(5%);
   }
 }
 
 @keyframes scroll-left {
   0% {
-    -moz-transform: translateX(20%);
-    -webkit-transform: translateX(20%);
-    transform: translateX(20%);
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
   }
   100% {
-    -moz-transform: translateX(-20%);
-    -webkit-transform: translateX(-20%);
-    transform: translateX(-20%);
+    -moz-transform: translateX(5%);
+    -webkit-transform: translateX(5%);
+    transform: translateX(5%);
   }
 }
 

@@ -94,7 +94,7 @@
           {%- when 'alert' -%}
           <div class="product__alert-wrapper" style="background-color: {{ block.settings.background }}">
             <button v-on:click="selection">
-              <p class="product__alert {% if block.settings.scroll_announcement == true %} scroll {% endif %}"> {{ block.settings.alert }} </p> 
+              <p class="product__alert {% if block.settings.scroll_announcement == true %} scroll {% endif %}" style="color: {{ block.settings.font_color }}"> {{ block.settings.alert }} </p> 
             </button>
           </div>
           {%- when 'text' -%}
@@ -185,22 +185,25 @@
             <script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
 
           {%- when 'variant_picker' -%}
+          
+          
           <div id="main-product">
             {%- unless product.has_only_default_variant -%}
-              {%- if block.settings.picker_type == 'button' -%}
-
-                <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.picker_type == 'button' -%}
+            
+            <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+              
+              
+              <form id="add-to-cart-form">
+                <template v-for="(option, i) in form.options" :key="i">
                   
-
-                  <form id="add-to-cart-form">
-                    <template v-for="(option, i) in form.options" :key="i">
-
-
+                  
+                  {%- if block.settings.checkbox_colorSwatch == true -%}       
                       <div v-if="option.name == 'Color'"  class="product-option-row" >
                         <div >
                             ${option.name}: <span> ${selected[i]}</span> <span class="">  </span>
                         </div>
-                        <div class="" >
+                        <div class="product-option__colorSwatchWrapper" >
                             <template v-for="(value, index) in option.values">
                               <div v-if="option.name == 'Color'" 
                               @click="
@@ -215,8 +218,6 @@
                             </template>
                         </div>
                       </div>
-
-
                       <div v-else class="product-option-row">
                         <div class="product-option-label" 
                         @click="option.visible = !option.visible" 
@@ -251,6 +252,31 @@
                             </template>
                         </div>
                       </div>
+
+                    {%- else -%}
+                      <div class="product-option-row">
+                        <div class="product-option-label" 
+                        @click="option.visible = !option.visible" 
+                        :class="{ labelActive : option.visible }"
+                        >
+                            ${option.name}: <span> ${selected[i]}</span> <span class="">  </span>
+                        </div>
+                        <div class="product-option-list" v-if="option.visible">
+                            <template v-for="(value, index) in option.values">
+                              <div class="product-option-item"
+                              @click="
+                                selected[i] = value;
+                                option.visible = false;
+                                form.selections[i] = value;
+                                selection(value)
+                              "
+                              >
+                                ${value}
+                              </div>
+                            </template>
+                        </div>
+                      </div>
+                      {%- endif -%}
                     </template>
                     <button @click="addToCart" type="submit" name="add" id="add-to-cart" class="add-to-cart-button">
                       Add to cart
@@ -511,7 +537,13 @@
           "type": "color",
           "id": "background",
           "default": "#ffffff",
-          "label": "t:sections.image-banner.settings.color_scheme.label"
+          "label": "t:sections.main-product.blocks.alert.settings.background_color.label"
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "default": "#ffff00",
+          "label": "t:sections.main-product.blocks.alert.settings.font_color.label"
         },
         {
           "type": "checkbox",
@@ -584,8 +616,8 @@
           "type": "checkbox",
           "id": "checkbox_colorSwatch",
           "default": true,
-          "label": "t:sections.main-product.settings.enable_color_swatch",
-          "info": ""
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.enable_color_swatch.label",
+          "info": "t:sections.main-product.blocks.variant_picker.settings.picker_type.info_color_swatch.label"
         }
       ]
     },

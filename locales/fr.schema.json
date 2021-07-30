@@ -1094,7 +1094,15 @@
           }
         },
         "alert": {
-          "name": "Alerte"
+          "name": "Alerte",
+          "settings": {
+            "background_color": {
+              "label": "Couleur arrière plan"
+            },
+            "font_color": {
+              "label": "Couleur écriture"
+            }
+          }
         },
         "scroll-alert": {
           "name": "Défilement Alerte"
@@ -1121,6 +1129,12 @@
               },
               "options__2": {
                 "label": "Bouton"
+              },
+              "enable_color_swatch": {
+                "label": "Activer le color swatch"
+              },
+              "info_color_swatch": {
+                "label": "insérer les images couleur dans le dossier asset au format jpg"
               }
             }
           }

@@ -26,12 +26,6 @@
         "variant_picker": {
           "type": "variant_picker"
         },
-        "quantity_selector": {
-          "type": "quantity_selector"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons"
-        },
         "description": {
           "type": "description"
         },
@@ -45,8 +39,6 @@
         "subtitle",
         "price",
         "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
         "description",
         "share"
       ]
