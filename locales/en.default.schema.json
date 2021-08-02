@@ -1095,6 +1095,17 @@
             }
           }
         },
+        "description-with-logo": {
+          "name": "Description with logo",
+          "settings": {
+              "title": {
+                "label": "Title of section"
+              },
+              "paragraph": {
+                "label": "Description of section"
+              }
+          }
+        },
         "scroll-alert": {
           "name": "Scroll Alert"
         },

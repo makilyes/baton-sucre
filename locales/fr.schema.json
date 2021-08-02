@@ -1104,6 +1104,17 @@
             }
           }
         },
+        "description-with-logo": {
+          "name": "Description avec logo",
+          "settings": {
+              "title": {
+                "label": "Titre de la section"
+              },
+              "paragraph": {
+                "label": "Description de la section"
+              }
+          }
+        },
         "scroll-alert": {
           "name": "Défilement Alerte"
         },
