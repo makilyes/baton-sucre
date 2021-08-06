@@ -1,0 +1,33 @@
+{{ 'component-video.css' | asset_url | stylesheet_tag }}
+
+
+<section class="Section" id="section-1572295915300" data-section-id="1572295915300">
+    <div class="BackgroundVideo__Wrapper">
+        <video id="heroVideoDesktop-1572295915300" autoplay="" muted="" loop="" playsinline="" class="BackgroundVideo__Container" poster="//cdn.shopify.com/s/files/1/0081/8436/5136/files/waterdrop-VIBE-Header-thumbnail_x720.jpg?v=1627373762">
+          <source src="https://cdn.shopify.com/s/files/1/0043/8203/1961/files/waterdrop-vibe-header-video.mp4?v=1627310989">
+        </video>
+        <div class="BackgroundVideo__TextLayer"><div class="BackgroundVideo__SubHeading SubHeading--big gta-medium-20-16">Notre célèbre saveur à base de physalis, romarin et menthe est de retour.</div><div class="BackgroundVideo__Heading Heading--big gta-extended-medium-60-32">Drink More Water, <br>follow your vibe.</div><a href="/collections/vibe" class="Button">DÉCOUVRIR MAINTENANT</a></div>
+    </div>
+  </section>
+
+  {% schema %}     
+{ 
+    "name": " Video section",
+    "tag": "section", 
+    "settings": [ 
+        { 
+            "type": "text", 
+            "id":"title", 
+            "label": "t:sections.main-product.blocks.add_to_cart.settings.heading.name", 
+            "default": "Add to Cart" 
+        }
+  ],
+  "presets": [
+    {
+      "name": "Video Section",
+      "category": "media"
+    }
+  ]
+} 
+
+{% endschema %}

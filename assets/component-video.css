@@ -1,0 +1,1101 @@
+/*ROOT Colors - those are color variables - it can be used globally on every page of the entire website (except checkout) so instead of typing color codes in CSS rules we can use it like this: background-color: var(--boostBg);*/
+:root {
+    --boostBg: rgb(237, 234, 243);
+    --boostClr: #3F185F;
+    --defenceBg: rgb(253, 244, 240);
+    --defenceClr: #D22E1C;
+    --focusBg: rgb(244, 248, 244);
+    --focusClr: #85B88B;
+    --cleanBg: rgb(244, 248, 244);
+    --cleanClr: #65B1AC;
+    --glowBg: rgb(255, 250, 236);
+    --glowClr: #FFD000;
+    --relaxBg: rgb(243, 225, 227);
+    --relaxClr: #960539;
+    --youthBg: rgb(255, 245, 235);
+    --youthClr: #F28F22;
+    --loveBg: rgb(245, 233, 236);
+    --loveClr: #960539;
+}
+[data-section-type="featured-product"] {
+    background: #EFEAE4;
+}
+/*FONTS - all the fonts that we use*/
+@font-face {
+    font-family: "GT America Extended Bold";
+    src: url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Extended-Bold.woff2?30237") format("woff2"), url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Extended-Bold.woff?30237") format("woff");
+}
+@font-face {
+    font-family: "GT America Extended Medium";
+    src: url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Extended-Medium.woff2?30237") format("woff2"), url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Extended-Medium.woff?30237") format("woff");
+}
+@font-face {
+    font-family: "GT America Extended Regular";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Extended-Regular.woff2?2207") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Extended-Regular.woff?2207") format("woff");
+}
+@font-face {
+    font-family: "GT America Standard Bold";
+    src: url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Standard-Bold.woff2?30237") format("woff2"), url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Extended-Bold.woff?30237") format("woff");
+}
+@font-face {
+    font-family: "GT America Standard Medium";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Standard-Medium.woff2?2207") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Standard-Medium.woff?2207") format("woff");
+}
+@font-face {
+    font-family: "GT America Standard Regular";
+    src: url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Standard-Regular.woff2?30237") format("woff2"), url("https://cdn.shopify.com/s/files/1/0004/7310/4447/files/GT-America-Standard-Regular.woff?30237") format("woff");
+}
+@font-face {
+    font-family: "GT America Standard light";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Standard-Light.woff2?2207") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Standard-Light.woff?2207") format("woff");
+}
+@font-face {
+    font-family: "GT America Condensed Bold";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Condensed-Bold.woff2?2207") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Condensed-Bold.woff?2207") format("woff");
+}
+@font-face {
+    font-family: "GT America Condensed Regular";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Condensed-Regular.woff2?2207") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Condensed-Regular.woff?2207") format("woff");
+}
+@font-face {
+    font-family: "GT America Mono Light";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Mono-Light.woff2?2843") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Mono-Light.woff?2843") format("woff");
+}
+@font-face {
+    font-family: "GT America Mono Regular";
+    src: url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Mono-Regular.woff?3841") format("woff2"), url("https://cdn.shopify.com/s/files/1/0058/5410/1602/files/GT-America-Mono-Regular.woff2?3841") format("woff");
+}
+/*Bermet added custom font classes for GT America*/
+.gta-extended-medium-60-32 {
+    font-family: "GT America Extended Medium" !important;
+    letter-spacing: 0px !important;
+}
+.gta-medium-45-25 {
+    font-family: "GT America Standard Medium" !important;
+    letter-spacing: 0px !important;
+}
+.gta-medium-35-20 {
+    font-family: "GT America Standard Medium" !important;
+    letter-spacing: 0px !important;
+}
+.gta-medium-ac-20-16 {
+    font-family: "GT America Standard Medium" !important;
+    letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+}
+span.toplogincollabel, .Drawer__Tab.Drawer__Tab--active, .gta-medium-20-16 {
+    font-family: "GT America Standard Medium" !important;
+    letter-spacing: 0.6px !important;
+}
+.Drawer__Tab, .gta-light-20-16 {
+    font-family: "GT America Standard Light" !important;
+    letter-spacing: 0px !important;
+}
+.ProductMeta__Description, .Product__Tabs button, .cfieldsd, .ProductForm__Option, .Product__QuickNav a, .HorizontalList__Item a, .gta-light-16-13 {
+    font-family: "GT America Standard Light" !important;
+}
+.gta-regular-16-10 {
+    font-family: "GT America Standard Regular" !important;
+}
+.Button, .gta-regular-button-13-13 {
+    font-family: "GT America Standard Regular" !important;
+    letter-spacing: 1.04px !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+    line-height: 20px !important;
+}
+.gta-medium-15-13 {
+    font-family: "GT America Standard Medium" !important;
+}
+.gta-medium-ac-15-13 {
+    font-family: "GT America Standard Medium" !important;
+    text-transform: uppercase !important;
+}
+.custom-field--valuex, .MegaMenu__Item--sidebar .MegaMenu__PushHeading, .MegaMenu__PushHeading, .gta-light-15-13 {
+    font-family: "GT America Standard Light" !important;
+}
+.gta-regular-ac-14-11 {
+    font-family: "GT America Standard Regular" !important;
+    letter-spacing: 0px !important;
+    text-transform: uppercase !important;
+}
+.MegaMenu__PushSubHeading, .MegaMenu__Item--sidebar .MegaMenu__PushSubHeading, .gta-regular-14-11 {
+    font-family: "GT America Standard Regular" !important;
+    letter-spacing: 0px !important;
+}
+@media (min-width: 642px ) {
+    .gta-extended-medium-60-32 {
+        font-size: 60px !important;
+        line-height: 65px !important;
+    }
+    .gta-medium-45-25 {
+        font-size: 45px !important;
+        line-height: 54px!important;
+    }
+    .gta-medium-35-20 {
+        font-size: 35px !important;
+        line-height: 42px !important;
+    }
+    span.toplogincollabel, .gta-medium-ac-20-16 {
+        font-size: 20px !important;
+        line-height: 30px !important;
+        letter-spacing: 0.6px !important;
+    }
+    .Drawer__Tab.Drawer__Tab--active, .gta-medium-20-16 {
+        font-size: 20px !important;
+        line-height: 30px !important;
+        letter-spacing: 0.6px !important;
+    }
+    .ProductMeta__Price, .Drawer__Tab, .gta-light-20-16 {
+        font-size: 20px !important;
+        line-height: 30px !important;
+    }
+    .ProductMeta__Description, .Product__Tabs button, .cfieldsd, .ProductForm__Option, .Product__QuickNav a, .HorizontalList__Item a, .gta-light-16-13 {
+        font-size: 16px !important;
+        line-height: 24px !important;
+        letter-spacing: 0px !important;
+    }
+    .gta-regular-16-10 {
+        font-size: 16px !important;
+        line-height: 24px !important;
+        letter-spacing: 0px !important;
+    }
+    .gta-medium-15-13 {
+        font-size: 15px !important;
+        line-height: 25px !important;
+        letter-spacing: 0px !important;
+    }
+    .gta-medium-ac-15-13 {
+        font-size: 15px !important;
+        line-height: 25px !important;
+        letter-spacing: 0px !important;
+    }
+    .custom-field--valuex, .MegaMenu__Item--sidebar .MegaMenu__PushHeading, .MegaMenu__PushHeading, .gta-light-15-13 {
+        font-size: 15px !important;
+        line-height: 25px !important;
+        letter-spacing: 0px !important;
+    }
+    .gta-regular-ac-14-11 {
+        font-size: 14px !important;
+        line-height: 20px !important;
+    }
+    .MegaMenu__PushSubHeading, .MegaMenu__Item--sidebar .MegaMenu__PushSubHeading, .gta-regular-14-11 {
+        font-size: 14px !important;
+        line-height: 20px !important;
+    }
+}
+@media (max-width: 641px ) {
+    .Heading--big, .gta-extended-medium-60-32 {
+        font-size: 32px !important;
+        line-height: 40px !important;
+    }
+    .SectionHeader__Heading.SectionHeader__Heading, .SectionHeader__SubHeading, .gta-medium-45-25 {
+        font-size: 25px !important;
+        line-height: 30px !important;
+    }
+    .ProductMeta__Title, .gta-medium-35-20 {
+        font-size: 20px !important;
+        line-height: 30px !important;
+    }
+    .gta-medium-ac-20-16 {
+        font-size: 16px !important;
+        line-height: 23px !important;
+        letter-spacing: 0.48px !important;
+    }
+    .SubHeading--big, span.toplogincollabel, .Drawer__Tab.Drawer__Tab--active, .gta-medium-20-16 {
+        font-size: 16px !important;
+        line-height: 23px !important;
+        letter-spacing: 0.48px !important;
+    }
+    .SectionHeader__Description p, .ProductMeta__Price, .Drawer__Tab, .gta-light-20-16 {
+        font-size: 16px !important;
+        line-height: 23px !important;
+    }
+    .ProductMeta__Description, .Product__Tabs button, .cfieldsd, .ProductForm__Option, .Product__QuickNav a, .HorizontalList__Item a, .gta-light-16-13 {
+        font-size: 13px !important;
+        line-height: 20px !important;
+        letter-spacing: 0.13px !important;
+    }
+    .gta-regular-16-10 {
+        font-size: 10px !important;
+        line-height: 14px !important;
+        letter-spacing: 0.10px !important;
+    }
+    .gta-medium-15-13 {
+        font-size: 13px !important;
+        line-height: 20px !important;
+        letter-spacing: 0.13px !important;
+    }
+    .gta-medium-ac-15-13 {
+        font-size: 13px !important;
+        line-height: 20px !important;
+        letter-spacing: 0.13px !important;
+    }
+    .custom-field--valuex, .MegaMenu__Item--sidebar .MegaMenu__PushHeading, .MegaMenu__PushHeading, .gta-light-15-13 {
+        font-size: 13px !important;
+        line-height: 20px !important;
+        letter-spacing: 0.13px !important;
+    }
+    .gta-regular-ac-14-11 {
+        font-size: 11px !important;
+        line-height: 14px !important;
+    }
+    .MegaMenu__PushSubHeading, .MegaMenu__Item--sidebar .MegaMenu__PushSubHeading, .gta-regular-14-11 {
+        font-size: 11px !important;
+        line-height: 14px !important;
+    }
+}
+/*CHRISTOPH*/
+.custom-field--valuex {
+    color: #666666;
+    line-height: 20px !important;
+}
+.bk-conversion #bk-localnav {
+    z-index: 5 !important;
+}
+#nudge-offer {
+    font-weight: normal !important;
+    margin: 0 0 !important;
+}
+.Cart__ShippingNotice {
+    color: #666666;
+}
+/*CHRISTIAN*/
+/*swatch icon on 12-pack products (manually linking to other flavours)*/
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    float: left;
+    margin: 5px;
+    cursor: pointer;
+}
+.shipping-info-free {
+    display: none;
+}
+.shipping-info-regular {
+   /*display:none;*/
+}
+/*GENERAL CSS*/
+.mobilehrdis hr {
+    border-color: #666666;
+}
+img {
+    image-rendering: -webkit-optimize-contrast;
+}
+.page-sca-storelocator #main, .s4com-helpcenter {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+#main #scasl-app-container {
+    z-index: 2 !important;
+}
+hr {
+    border-bottom: 0px solid;
+    color: #2e2e2e;
+}
+#section-announcement {
+    z-index: 7;
+    position: relative;
+}
+.Heading {
+    font-family: "GT America Standard Regular", "Open Sans", sans-serif;
+}
+body {
+    font-family: "GT America Standard Regular", "Open Sans", sans-serif;
+    overflow-x: initial !important;
+}
+h1, h1 a, h2, h2 a, h3, h3 a, h6, h6a, #nav li a, div.title a, .headline, .subtitle {
+    font-family: "GT America Standard Medium", "Open Sans", sans-serif;
+}
+h4, h4 a {
+    font-family: "GT America Standard Regular", "Open Sans", sans-serif;
+}
+h5, h5 a {
+    font-family: "GT America Standard Regular", "Open Sans", sans-serif;
+}
+.jdgm-star {
+    font-family: 'JudgemeStar' !important;
+}
+.Product__Tabs .jdgm-star {
+    font-family: 'JudgemeStar';
+}
+.Product__Tabs .jdgm-paginate__first-page, .Product__Tabs .jdgm-paginate__last-page, .Product__Tabs .jdgm-paginate__prev-page, .Product__Tabs .jdgm-paginate__next-page {
+    font-family: 'JudgemeIcons';
+}
+.Product__Tabs .Table, .Product__Tabs .Rte table {
+    font-size: 14px;
+}
+.Product__Tabs .Table th, .Product__Tabs .Rte table th, .Product__Tabs .Table td, .Product__Tabs .Rte table td {
+    padding: 0;
+}
+@media screen and (min-width: 641px) {
+    h1 > .productTitleCustomField {
+        font-size: 24px;
+    }
+}
+.productTitleCustomField {
+    font-size: 16px;
+}
+.custom-field-centeralign {
+    text-align: center;
+}
+/*LOGIN_BUTTON - CSS control of a waterdrop club button (top right corner)*/
+.Icon-Wrapper--clickable {
+    cursor: pointer;
+}
+.SidebarMenu .Text--subdued {
+    color: #666666;
+}
+ul.toprightcolalign {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+span.toploginlogin {
+    text-decoration: underline;
+}
+span.toploginlogin2, span.toploginlogin {
+    color: #666666;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+li.toplogincolitem {
+    line-height: 17px;
+    text-align: left;
+}
+span.toplogincol {
+    font-size: 12px;
+    color: #666666;
+    font-weight: 500;
+    letter-spacing: -1px;
+}
+span.toplogincol2 {
+    font-size: 12px;
+    letter-spacing: -1px;
+    color: #666666;
+    font-weight: 500;
+}
+@media screen and (max-width: 1200px) {
+    span.toplogincol, span.toplogincol2 {
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 1240px) {
+    .Header:not(.Header--sidebar) .Header__Wrapper {
+        padding: 15px 50px;
+    }
+}
+/*LOGOUT_BUTTON - logout button formatting*/
+a.logoutbtnc {
+    color: #666666 !important;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 20px;
+    border-radius: 25px;
+    border: 0.5px solid #666666;
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+    -webkit-transition: border-color 1s;
+    transition: border-color 1s;
+}
+a.logoutbtnc:hover {
+    background-color: #F3F0EA;
+    border-color: #666666;
+}
+/*PRODUCT - rest of the CSS for product page*/
+.manualswatches {
+    min-height: 62px;
+}
+#judgeme_product_reviews {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+.priceSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.priceSection .ProductMeta__PriceList {
+    margin-top: 0;
+}
+.Product__Wrapper .priceSection .jdgm-star, .Product__Wrapper .priceSection .jdgm-prev-badge__text {
+    font-size: 12px;
+    color: #666666;
+}
+.Product__Slideshow, .Product__SlideshowNavScroller {
+    color: #808080;
+}
+.Product__Slideshow ol {
+    color: #808080;
+    margin-bottom: 30px;
+}
+.flickity-page-dots .dot{
+    border: 1px solid #666666;
+    width: 5px;
+    height: 5px;
+}
+.Collapsible {
+    border-top: 1px solid #666666;
+    border-bottom: 1px solid #666666;
+    overflow: hidden;
+}
+/*CART_DRAWER_LABEL - CSS for correct formatting of loyalty points in cart drawer*/
+.cartpunktespan {
+    font-size: 14px;
+    color: #666666;
+}
+.cartpunkte {
+    text-align: center;
+    margin: 0 0 30px;
+}
+/*SUBSCRIPTION - formatting of a subscription block*/
+.subscript {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 30px 30px 0;
+}
+.rc_layout {
+    margin: 80px 0;
+}
+#loyaltylion .lion-redeem-reward-modal__free-product-variant-selector select {
+    border: 1px solid #b1b1b1;
+}
+/*COLLECTION_MENU*/
+.collection-menu {
+    display: flex;
+    border-right: 0;
+    align-items: center;
+    padding: 0 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    flex: initial;
+}
+@media screen and (min-width: 641px) {
+    .collection-menu {
+        justify-content: center;
+        flex: 1 0 auto;
+    }
+}
+.Header {
+    transition: all 300ms ease-in-out;
+}
+.CollectionToolbar {
+    position: sticky;
+}
+.CollectionToolbar__Item--sort, .collection-menu-item {
+    font-family: "GT America Standard Light", sans-serif !important;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666666;
+}
+.collection-menu-item {
+    display: flex;
+    align-items: center;
+    height: 63px;
+    margin-right: 30px;
+}
+.collection-menu-item.active, .collection-menu-item:hover {
+    padding-top: 2px;
+    border-bottom: 2px solid;
+}
+img[data-sizes="auto"] {
+    display: block;
+    width: 100%;
+}
+@media screen and (min-width: 1500px) {
+    .CollectionGrid {
+        grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)) !important;
+    }
+}
+/*Log In and Register tabs - new login system formatting*/
+.Form__TabHeader {
+    display: flex;
+    justify-content: space-around;
+    background: #fff;
+}
+.Form__TabContent {
+    background: #fff;
+    padding: 25px;
+    border: 1px solid #2e2e2e;
+    border-top-width: 0;
+    overflow: hidden;
+}
+.Form__TabItem:first-child:not(.Form__TabItem--active) {
+    border-right-width: 0;
+}
+.Form__TabItem:last-child:not(.Form__TabItem--active) {
+    border-left-width: 0;
+}
+.Form__TabItem {
+    flex-grow: 1;
+    padding: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    color: #666666;
+    background: #f6f6f6;
+    border: 1px solid #F3F0EA;
+    border-bottom-color: #666666;
+    cursor: pointer;
+}
+.Form__TabItem.Form__TabItem--active {
+    color: #2e2e2e;
+    background: #fff;
+    border-left-color: #666666;
+    border-top-color: #666666;
+    border-right-color: #666666;
+    border-bottom-width: 0;
+    animation: tabAnimation 2s;
+}
+.Form__TabContent__internals {
+    position: relative;
+}
+.Form__TabContent__internals.Form__TabContent--right {
+    animation: slideInRight 0.5s;
+}
+.Form__TabContent__internals.Form__TabContent--left {
+    animation: slideInLeft 0.5s;
+}
+@keyframes slideInRight {
+    0% {
+        right: -300px;
+        opacity: 0;
+    }
+    100% {
+        right: 0;
+        opacity: 1;
+    }
+}
+@keyframes slideInLeft {
+    0% {
+        left: -300px;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+@keyframes tabAnimation {
+    from {
+        color: #666666;
+        border-left-color: #F3F0EA;
+        border-top-color: #F3F0EA;
+        border-right-color: #F3F0EA;
+    }
+    to {
+        color: #2e2e2e;
+        border-left-color: #666666;
+        border-top-color: #666666;
+        border-right-color: #666666;
+    }
+}
+#LoginForm {
+    display: none;
+}
+#RegistrationForm {
+    display: none;
+}
+/* Mobile footer */
+.Collapsible--footer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.SidebarMenu__Footer {
+    flex: 1 0 auto;
+}
+.MegaMenu__Item--sidebar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin: 0 0 40px;
+    padding: 0 30px;
+}
+.MegaMenu__Item--sidebar .MegaMenu__Push {
+    margin-top: 35px;
+}
+@media screen and (max-width: 374px) {
+    .MegaMenu__Item--sidebar {
+        flex-direction: column;
+        flex-wrap: nowrap;
+   }
+}
+.MegaMenu__Item--sidebar--one-column {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.BackgroundVideo__Wrapper {
+    width: 100%;
+    height: calc(100vh - 63px);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    background-size: cover;
+    justify-content: center;
+    background-position: center;
+}
+@media screen and (max-width: 1239px) {
+    .BackgroundVideo__Wrapper {
+        height: calc(100vh - 69px);
+    }
+}
+@media screen and (max-width: 640px) {
+    .BackgroundVideo__Wrapper {
+        height: calc(100vh - 55px);
+    }
+}
+.BackgroundVideo__Container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+.BackgroundVideo__TextLayer {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    pointer-events: none;
+}
+.BackgroundVideo__TextLayer a {
+    pointer-events: auto;
+}
+/*FOOTER - all the stuff related to footer appearance*/
+.Footer--withMargin {
+    margin-top: 0;
+}
+.Footer__ThemeAuthor {
+    visibility: hidden;
+}
+.Footer__PaymentList {
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
+}
+.Footer__Content.Rte a {
+    color: inherit;
+    text-decoration: none;
+}
+.Footer__Inner .Footer__Content.Rte a:not(.Button):hover {
+    color: #f3f0ea;
+}
+.Footer .Container {
+    max-width: 1200px;
+    padding: 0;
+}
+.Footer__Block {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.Footer {
+    padding: 0px 0 42px 0;
+}
+.Footer__Inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.Footer p {
+    font-size: 13px;
+    line-height: 1.6em;
+}
+.Footer .Linklist {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6em;
+}
+.Footer .Linklist__Item {
+    margin-bottom: 0;
+    line-height: 1.6em;
+}
+.Rte p:not(:last-child), .Rte ul:not(:last-child), .Rte ol:not(:last-child) {
+    margin-bottom: 0;
+}
+.ProductItem__LabelList {
+    width: 100%;
+}
+.ProductItem__LabelList .jdgm-prev-badge__text {
+    font-family: "GT America Standard Regular" !important;
+    font-size: 10px;
+    line-height: 24px;
+    color: #808080;
+}
+.ProductItem__LabelList .jdgm-preview-badge .jdgm-star {
+    font-size: 10px;
+    color: #808080;
+}
+.ProductItem__Sale, .ProductItem__Sold {
+    background-color: #D54D4D;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    color: #666666;
+    letter-spacing: 1.4px;
+    font-size: 16px;
+}
+.ProductItem__Sold {
+    background-color: #666666;
+   /*color: #000;*/
+}
+.ProductList__Item {
+    background: #EFEAE4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+@media screen and (max-width: 1007px) {
+    .ProductMeta__Title {
+        text-align: left;
+    }
+}
+.ProductItem__PriceList {
+    margin: 15px 0;
+}
+.ProductForm__AddToCart {
+    padding: 10px;
+    line-height: 36px !important;
+}
+.Product__Tabs .jdgm-prev-badge {
+    font-size: 14px;
+}
+.Product__Tabs {
+    margin: 0;
+}
+.ColorSwatch--small, .ColorSwatch--large {
+    width: 19px;
+    height: 19px;
+}
+.Button--green {
+    color: #FDFBF6;
+    background-color: #2E2E2E;
+}
+.Price--compareAt {
+    font-family: "GT America Standard Light", sans-serif;
+}
+.MegaMenu {
+    padding: 0;
+    background: #FDFBF6;
+}
+.MegaMenu__Wrapper {
+    padding: 20px 0;
+}
+.MegaMenu__Inner {
+    max-width: unset;
+    justify-content: start !important;
+}
+.MegaMenu__Title {
+    font-family: "GT America Standard Medium", sans-serif !important;
+    font-size: 16px;
+    letter-spacing: 0.16px;
+    line-height: 26.6px;
+    color: #666666;
+}
+.HorizontalList__Item.is-active a {
+    font-family: "GT America Standard Medium", sans-serif;
+    font-size: 18px;
+    color: #2e2e2e;
+}
+.Drawer__Tabs {
+    margin-left: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-left: 1px solid lightgray;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+@media screen and (min-width: 641px) {
+    .Drawer__Tabs {
+        margin-left: 63px;
+    }
+}
+.Drawer__Header {
+    border-bottom: 1px solid lightgray;
+}
+.Drawer__Close {
+    left: 24px;
+}
+.Drawer__Container {
+    padding: 0 !important;
+}
+.SidebarMenu__Nav .Collapsible {
+    padding: 0 30px;
+    margin: 0 30px;
+}
+.SectionHeader__Description {
+    max-width: unset;
+}
+.FeatureText .SectionHeader__Description {
+    margin-bottom: 60px;
+}
+.BackgroundVideo__Heading {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.BackgroundVideo__SubHeading {
+    margin-bottom: 5px;
+}
+@media screen and (min-width: 641px) {
+    .FeatureText__Content {
+        max-width: 754px !important;
+    }
+}
+@media screen and (max-width: 641px) {
+    .FeatureText {
+        text-align: left !important;
+    }
+    .SectionHeader__Heading {
+        font-size: 30px;
+    }
+    .CollectionList .SectionHeader__Heading {
+        font-size: 24px;
+        line-height: 39px;
+    }
+    .FeatureText__Content .SectionHeader__Heading {
+        font-size: 42px;
+        line-height: 47px;
+    }
+    .BackgroundVideo__Heading {
+        font-size: 31px;
+        line-height: 33px;
+    }
+    .BackgroundVideo__SubHeading {
+        font-size: 16px;
+        line-height: 17px;
+    }
+    .FeatureText .Button {
+        display: block;
+    }
+}
+.ArticleItem__Title a {
+    font-family: "GT America Standard Medium", sans-serif;
+    font-size: 35px;
+    line-height: 1.2;
+}
+.ArticleItem__Excerpt {
+    font-size: 22px;
+}
+.ArticleItem__Link {
+    font-family: "GT America Mono Light", monospace;
+    font-size: 18px;
+}
+.ProductListWrapper {
+    overflow: visible !important;
+}
+.ProductItem__ColorSwatchList {
+    margin-top: 0;
+    margin-bottom: 11px;
+}
+.MegaMenu__Item .Link {
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    line-height: 23.6px;
+}
+.MegaMenu__Push--shrink:not(:last-child) {
+    margin-right: 75px;
+    padding-right: 0;
+}
+.MegaMenu__Push--shrink:last-child {
+    margin-right: 0;
+    padding-right: 0;
+}
+/** * Floating Add to cart button */
+.FloatingForm__Block {
+    display: block;
+    text-align: left;
+}
+.ProductForm__AddToCart--floating {
+    padding: 7px 10px 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.3s;
+    z-index: 2;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 3px #0000001A;
+}
+.ProductForm__AddToCart--FloatingVisible {
+    opacity: 1;
+    visibility: visible;
+    animation: scaleIn 1s;
+}
+.Product__Tabs .Collapsible:last-child {
+    margin-bottom: 25px;
+}
+.Product__Tabs .Collapsible__Content {
+    padding-right: 0;
+}
+.ProductForm__AddToCart--floating .Button {
+    height: 55px;
+}
+.FloatingForm__TitleBlock {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.FloatingForm__ProductTitle {
+    font-family: 'GT America Standard Medium', serif;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 1px;
+}
+.FloatingForm__VariantTitle {
+    font-family: 'GT America Standard Regular', serif;
+    font-size: 10px;
+    line-height: 13px;
+    color:#666666;
+}
+.FloatingForm__Price {
+    font-family: 'GT America Standard Medium', serif;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: right;
+}
+.FloatingForm__Price--compareAt {
+    color: #D54D4D;
+}
+.FloatingForm__Price--normal {
+    color: #000;
+}
+.FloatingForm__Price--old {
+    font-family: 'GT America Standard Regular', serif;
+    font-size: 10px;
+    line-height: 13px;
+    color:#666666;
+    text-decoration: line-through;
+    text-align: right;
+}
+/** * Product tabs height */
+@media screen and (min-width: 1008px) {
+    .Product__Tabs .Collapsible--large .Collapsible__Button {
+        padding: 20px 0;
+    }
+}
+/*CART_COUNTER_BUBBLE*/
+.cartd-bubble {
+    position: absolute;
+    top: -7px;
+    right: -10px;
+    width: 16px;
+    height: 16px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+    border-radius: 100%;
+    color: #fff;
+    -webkit-box-shadow: 0 0 0 2px #fff;
+    box-shadow: 0 0 0 2px #fff;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.cartd-bubble-visible {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+/*CUSTOM_TABLE*/
+.customDivTable {
+    display: table;
+    width: 100%;
+    border-right: 1px solid #DCD5CE;
+    border-bottom: 1px solid#DCD5CE;
+}
+.customDivTableRow {
+    display: table-row;
+}
+.customDivTableHeading {
+    background-color: #F3F0EA;
+    display: table-header-group;
+}
+.customDivTableCell, .customDivTableHead {
+    border-left: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+    display: table-cell;
+    padding: 2px 5px;
+}
+.customDivTableHeading {
+    background-color: #F3F0EA;
+    display: table-header-group;
+    font-weight: bold;
+}
+.customDivTableFoot {
+    background-color: #F3F0EA;
+    display: table-footer-group;
+    font-weight: bold;
+}
+.customDivTableBody {
+    display: table-row-group;
+}
+.Rte .customDivTable {
+    word-break: keep-all;
+}
+@media screen and (max-width: 1007px) {
+    .Product__Tabs .Collapsible {
+        padding: 0 !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    .customDivTableCell, .customDivTableHead {
+        padding: 2px 2px;
+    }
+    .customDivTable {
+        font-size: 13px;
+    }
+}
+.ProductMeta__Heading {
+    justify-content: space-between;
+}
+@media only screen and (max-width: 1007px) {
+    .Product__Info {
+        padding: 0 15px;
+    }
+    .ProductMeta__Heading {
+        display: flex;
+        border-bottom: 1px solid #2E2E2E;
+        margin-bottom: 10px;
+    }
+    .cfieldsd {
+        margin: 15px 0;
+    }
+}
+@media only screen and (min-width: 1008px) {
+    .ProductMeta__Title {
+        border-bottom: 1px solid #2E2E2E;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    .cfieldsd {
+        margin: 20px 0;
+    }
+}
+.cfieldsd {
+    color: #2E2E2E;
+}
+.Product__InfoWrapper hr {
+    margin: 0;
+}
+@media (min-width: 1008px) {
+    .ProductList--carousel {
+        display: flex;
+    }
+}
+.FeaturedCollections .ProductList--carousel {
+    display: block;
+}
