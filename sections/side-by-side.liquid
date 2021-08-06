@@ -1,0 +1,220 @@
+{{ 'component-side-by-side.css' | asset_url | stylesheet_tag }}
+
+<div class="side-by-side">
+  <div class="left-column">
+      {% for block in section.blocks %}
+      {%- case block.type -%}
+      {% when 'Images' %}
+      <div class="image-background-left">
+        <img srcset="{%- if block.settings.image.width >= 165 -%}{{ block.settings.image | img_url: '165x' }} 165w,{%- endif -%}
+        {%- if block.settings.image.width >= 360 -%}{{ block.settings.image | img_url: '360x' }} 360w,{%- endif -%}
+        {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | img_url: '535x' }} 535w,{%- endif -%}
+        {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+        {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | img_url: '940x' }} 940w,{%- endif -%}
+        {%- if block.settings.image.width >= 1070 -%}{{ block.settings.image | img_url: '1070x' }} 1070w{%- endif -%}"
+         src="{{ block.settings.image | img_url }}" 
+         loading="lazy" 
+         alt="{{ block.settings.image.alt }}" 
+         width="{{ block.settings.image.width }}"
+        height="{{ block.settings.image.height }}"
+        class="image-left"
+        >
+        <div class="column-left__wrapperText " >
+            {% when 'titles' %}
+            <h2 class="title-left" style="color: {{ section.settings.background | color_modify: 'alpha', section.settings.opacity }} ;">{{ block.settings.titleleft | escape }}</h2>
+            {% when 'Subtitles' %}
+            <h3 class="subtitle-left" style="color: {{ section.settings.background | color_modify: 'alpha', section.settings.opacity }} ;">{{ block.settings.Subtitle-left }}</h3>
+            {%- when 'button' -%}
+            {%- if block.settings.button_label_2 != blank -%}
+              <a{% if block.settings.button_link_2 != blank %} href="{{ block.settings.button_link_2 }}"{% endif %} class=" button side-by-side-btn{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link_2 == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                {{ block.settings.button_label_2 | escape }}
+              </a>
+            {%- endif -%}
+        </div>     
+        {%- endcase -%}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="right-column">
+      {% for block in section.blocks %}
+      {%- case block.type -%}
+      {% when 'Images' %}
+      <div class="image-background-left">
+        <img srcset="{%- if block.settings.image-2.width >= 165 -%}{{ block.settings.image-2 | img_url: '165x' }} 165w,{%- endif -%}
+        {%- if block.settings.image-2.width >= 360 -%}{{ block.settings.image-2 | img_url: '360x' }} 360w,{%- endif -%}
+        {%- if block.settings.image-2.width >= 535 -%}{{ block.settings.image-2 | img_url: '535x' }} 535w,{%- endif -%}
+        {%- if block.settings.image-2.width >= 720 -%}{{ block.settings.image-2 | img_url: '720x' }} 720w,{%- endif -%}
+        {%- if block.settings.image-2.width >= 940 -%}{{ block.settings.image-2 | img_url: '940x' }} 940w,{%- endif -%}
+        {%- if block.settings.image-2.width >= 1070 -%}{{ block.settings.image-2 | img_url: '1070x' }} 1070w{%- endif -%}"
+         src="{{ block.settings.image | img_url }}" 
+         loading="lazy" 
+         alt="{{ block.settings.image-2.alt }}" 
+         width="{{ block.settings.image-2.width }}"
+        height="{{ block.settings.image-2.height }}"
+        class="image-right"
+        >
+        {% when 'titles' %}
+        <h2 class="title-left">{{ block.settings.title-right }}</h2>
+        {% when 'Subtitles' %}
+        <h3 class="subtitle-left">{{ block.settings.Subtitle-right }}</h3>
+        {%- when 'button' -%}
+              {%- if block.settings.button_label != blank -%}
+                <a{% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}"{% endif %} class=" button side-by-side-btn {% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+        {%- endcase -%}
+        {% endfor %}
+      </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "side by side",
+  "tag": "section",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Columns",
+    "default": "Columns"
+  },
+  {
+    "type": "color",
+    "id": "background",
+    "default": "#ffffff",
+    "label": "t:sections.image-banner.settings.color_scheme.label"
+  },
+  {
+    "type": "range",
+    "id": "opacity",
+    "default": 1,
+    "min": 0,
+    "max": 1,
+    "step": 0.10,
+    "label": "t:sections.image-banner.settings.range.label"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "button",
+    "name": "t:sections.image-with-text.blocks.button.name",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "button_label",
+        "default": "Button label",
+        "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+        "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "t:sections.image-with-text.blocks.button.settings.button_link.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "button_style_secondary",
+        "default": false,
+        "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+      },
+      {
+        "type": "text",
+        "id": "button_label_2",
+        "default": "Button label",
+        "label": "t:sections.image-banner.blocks.buttons.settings.button_label_2.label",
+        "info": "t:sections.image-banner.blocks.buttons.settings.button_label_2.info"
+      },
+      {
+        "type": "url",
+        "id": "button_link_2",
+        "label": "t:sections.image-banner.blocks.buttons.settings.button_link_2.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "button_style_secondary_2",
+        "default": false,
+        "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_2.label"
+      }
+    ]
+  },
+  {
+    "type": "titles",
+    "name": "titles",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "titleleft",
+        "default": "TITLE",
+        "label": "title left"
+      },
+      {
+        "type": "text",
+        "id": "title-right",
+        "default": "TITLE",
+        "label": "title right"
+      }
+    ]
+  },
+  {
+    "type": "Subtitles",
+    "name": "Subtitles",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "Subtitle-left",
+        "default": "SUBTITLE",
+        "label": "subtitle left"
+      },
+      {
+        "type": "text",
+        "id": "Subtitle-right",
+        "default": "SUBTITLE",
+        "label": "subtitle right"
+      }
+    ]
+  },
+  {
+    "type": "Images",
+    "name": "Images",
+    "limit": 1,
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image colum left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image-2",
+      "label": "Image colum right"
+    }
+    ]
+  }
+],
+"presets": [
+    {
+      "name": "Side by Side",
+      "blocks": [
+        {
+            "type": "Images"
+        },
+        {
+          "type": "titles"
+        },
+        {
+          "type": "Subtitles"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

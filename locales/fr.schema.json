@@ -1104,17 +1104,6 @@
             }
           }
         },
-        "description-with-logo": {
-          "name": "Description avec logo",
-          "settings": {
-              "title": {
-                "label": "Titre de la section"
-              },
-              "paragraph": {
-                "label": "Description de la section"
-              }
-          }
-        },
         "scroll-alert": {
           "name": "Défilement Alerte"
         },
@@ -1147,6 +1136,20 @@
               "info_color_swatch": {
                 "label": "insérer les images couleur dans le dossier asset au format jpg"
               }
+            }
+          }
+        },
+        "add_to_cart": {
+          "name": "Add to cart",
+          "settings": {
+            "heading": {
+              "name": "Titre"
+            },
+            "featured_product": {
+              "name": "Choisissez le produit"
+            },
+            "hide_title": {
+              "name": "Voulez cacher le titre de la variante ?"
             }
           }
         },
@@ -1297,6 +1300,32 @@
         }
       },
       "name": "Informations produits"
+    },
+    "description-with-logo": {
+      "name": "Description avec logo",
+      "settings": {
+          "title": {
+            "label": "Titre de la section"
+          },
+          "paragraph": {
+            "label": "Description de la section"
+          },
+          "logo_image": {
+            "label": "Image du Logo"
+          },
+          "logo_link": {
+            "label": "Lien vers..."
+          },
+          "logo_text": {
+            "label": "Texte pour ce logo"
+          },
+          "logo_reverse": {
+            "label": "Inverser Texte/Logo"
+          },
+          "background-color": {
+            "label": "Couleur arrière plan"
+          }
+      }
     },
     "main-search": {
       "name": "Résultats de la recherche",

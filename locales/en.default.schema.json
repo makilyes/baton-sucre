@@ -1095,17 +1095,6 @@
             }
           }
         },
-        "description-with-logo": {
-          "name": "Description with logo",
-          "settings": {
-              "title": {
-                "label": "Title of section"
-              },
-              "paragraph": {
-                "label": "Description of section"
-              }
-          }
-        },
         "scroll-alert": {
           "name": "Scroll Alert"
         },
@@ -1138,6 +1127,20 @@
               "info_color_swatch": {
                 "label": "insert the colors jpg in your assets folder"
               }
+            }
+          }
+        },
+        "add_to_cart": {
+          "name": "Add to cart",
+          "settings": {
+            "heading": {
+              "name": "Heading"
+            },
+            "featured_product": {
+              "name": "Select your product"
+            },
+            "hide_title": {
+              "name": "Want to hide variant title if color swatch is used ?"
             }
           }
         },
@@ -1286,6 +1289,32 @@
         "info_color_swatch": {
           "label": "insert the colors jpg in your assets folder"
         }
+      }
+    },
+    "description-with-logo": {
+      "name": "Description with logo",
+      "settings": {
+          "title": {
+            "label": "Title of section"
+          },
+          "paragraph": {
+            "label": "Description of section"
+          },
+          "logo_image": {
+            "label": "Logo Image"
+          },
+          "logo_link": {
+            "label": "Link to..."
+          },
+          "logo_text": {
+            "label": "Text for this logo"
+          },
+          "logo_reverse": {
+            "label": "Reverse Text/Logo"
+          },
+          "background_color": {
+            "label": "Background color"
+          }
       }
     },
     "main-search": {

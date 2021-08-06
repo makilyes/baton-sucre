@@ -1,0 +1,260 @@
+{{ "component-add-to-cart.css" | asset_url | stylesheet_tag }}
+
+<div id="add-to-cart-section">
+  <div class="add-to-cart-image">
+    <img class="atc-main-image" :src="selectedVariant.featured_image.src" alt="">
+    <!--<div class="swiper-container-product-page swiper-container-{{- product.id -}}">
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+          <div class="swiper-slide">
+            <img id="{{ image.alt | handleize }}" src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}" />
+            <div class="swiper-button-next swiper-button-next-{{- product.id -}}"></div>
+            <div class="swiper-button-prev swiper-button-prev-{{- product.id -}}"></div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>-->
+  </div> 
+  <div class="add-to-cart-description">
+    <h2> {% if section.settings.featured_product %} {{ section.settings.featured_product.title }} {% else %} Title Of Product {% endif %}</h2>
+    <div class="add-to-cart-hr"></div>
+    <div class="add-to-cart-prices">
+      <p>{{ section.settings.featured_product.price | divided_by: 100.00 | round: 3  }}</p>
+      <p class="add-to-cart-old-price">ancien prix</p>
+      <p>{{ section.settings.featured_product.selected_variant }}</p>
+      <!-- <p>${selectedVariant.title}</p> -->
+    </div>
+    <form id="add-to-cart">
+      <template v-for="(option, i) in form.options" :key="i">
+        {%- if section.settings.checkbox_colorSwatch == true -%}
+          <div class="wrapper">
+            <div class="atc-options" 
+            @click="" 
+            >
+                ${option.name}: <span> ${selected[i]}</span>
+                
+            </div>
+          </div>
+          <div class="atc-options-values" >
+              <template v-for="(value, index) in option.values" v-bind:value="value"> 
+                  <div class=""
+                      @click.prevent= "
+                          selected[i] = value;
+                          form.selections[i] = value;
+                          selection(value); 
+                      "
+                  >
+                      <button>
+                        <div  v-if="option.name == 'Color'">   
+                          <p class=" {% if section.settings.hide_title %} hide {% endif %} ">${value} </p>         
+                          <img class="image-variant" :src="'//cdn.shopify.com/s/files/1/0582/2824/4664/t/3/assets/' + value + '.jpg'" alt="">
+                        </div>
+                        <div v-else >   
+                          <p >${value} </p>         
+                        </div>
+                      </button>                  
+                  </div>
+              </template>
+          </div>
+        {%- else -%}
+        <div class="wrapper">
+          <div class="atc-options" 
+          @click="" 
+          >
+              ${option.name}: <span> ${selected[i]}</span>
+              
+          </div>
+        </div>
+        <div class="atc-options-values" >
+            <template v-for="(value, index) in option.values" v-bind:value="value"> 
+                <div class=""
+                    @click.prevent= "
+                        selected[i] = value;
+                        form.selections[i] = value;
+                        selection(value); 
+                    "
+                >
+                    <button>
+                      <div >   
+                        <p >${value} </p>         
+                      </div>
+                    </button>                  
+                </div>
+            </template>
+        </div>
+        {%- endif -%}
+      </template>
+      <button @click="addToCart" type="submit" name="add" id="add-to-cart" class="add-to-cart-button">
+        Add to cart
+      </button>
+      <a href="/products/{{ section.settings.featured_product.handle }}">En savoir plus</a>
+    </form>
+  </div>
+</div>
+
+
+{% schema %}     
+{ 
+    "name": " Featured product ATC",
+    "tag": "section", 
+    "settings": [ 
+        { 
+            "type": "text", 
+            "id":"title", 
+            "label": "t:sections.main-product.blocks.add_to_cart.settings.heading.name", 
+            "default": "Add to Cart" 
+        }, 
+        
+        { 
+        "type": "product",
+        "id": "featured_product", 
+        "label": "t:sections.main-product.blocks.add_to_cart.settings.featured_product.name"
+        },
+        {
+          "type": "checkbox",
+          "id": "checkbox_colorSwatch",
+          "default": true,
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.enable_color_swatch.label",
+          "info": "t:sections.main-product.blocks.variant_picker.settings.picker_type.info_color_swatch.label"
+        },
+        { 
+        "type": "checkbox",
+        "id": "hide_title", 
+        "label": "t:sections.main-product.blocks.add_to_cart.settings.hide_title.name",
+        "default": false 
+        } 
+  ],
+  "presets": [
+    {
+      "name": "Add to cart Section",
+      "category": "Add to cart"
+    }
+  ]
+} 
+
+{% endschema %}
+
+<script>
+  var swiper = new Swiper(".swiper-container-{{- product.id -}}", {
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 0,
+    loop: true,
+
+    breakpoints: {
+      600: {
+        allowTouchMove: false,
+        speed: 0,
+        navigation: {
+          nextEl: ".swiper-button-next-{{- product.id -}}",
+          prevEl: ".swiper-button-prev-{{- product.id -}}"
+        }
+      }
+    }
+  })
+
+
+  if (document.querySelector("#add-to-cart-section")) {
+    const productForm = Vue.createApp({
+      delimiters: ["${", "}"],
+      data() {
+        return {
+          open: false,
+          variants: "",
+          selectedVariant: "",
+          selected: [],
+          selectedImage: "",
+          form: {
+            selections: "",
+            options: "",
+          },
+        };
+      },
+      created() {
+        axios.get("/products/{{ section.settings.featured_product.handle }}.js").then((results) => {
+          this.form.options = results.data.options.map((item) => ({
+            ...item,
+            visible: false,
+          }));
+          this.variants = results.data.variants;
+          results.data.options.map((item) =>
+            this.selected.push(item.values[0])
+          );
+          this.form.selections = [
+            this.selected[0] ? this.selected[0] : null,
+            this.selected[1] ? this.selected[1] : null,
+            this.selected[2] ? this.selected[2] : null,
+          ];
+
+          this.variants.forEach((variant, i) => {
+            if (
+              variant.option1 === this.form.selections[0] &&
+              variant.option2 === this.form.selections[1] &&
+              variant.option3 === this.form.selections[2]
+            ) {
+              this.selectedVariant = variant;
+              console.log(this.selectedVariant);
+            }
+          });
+
+        });
+      },
+      methods: {
+        addToCart(event) {
+          event.preventDefault();
+
+          let selectedVariant;
+
+          this.variants.forEach((variant, i) => {
+            if (
+              variant.option1 === this.form.selections[0] &&
+              variant.option2 === this.form.selections[1] &&
+              variant.option3 === this.form.selections[2]
+            ) {
+              selectedVariant = variant;
+            }
+          });
+
+          let data = {
+            id: selectedVariant.id,
+            quantity: 1,
+          };
+
+          axios
+            .post("/cart/add.js", data)
+            .then((response) => {
+              store.getCart();
+            })
+            .then(() => {
+              toggleMiniCart.openCart();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        selection(value) {
+
+            this.variants.forEach((variant, i) => {
+              if (
+                variant.option1 === this.form.selections[0] &&
+                variant.option2 === this.form.selections[1] &&
+                variant.option3 === this.form.selections[2]
+              ) {
+                this.selectedVariant = variant;
+              }
+          });
+
+          console.log(this.selectedVariant.featured_image.position);
+          console.log(this.selectedVariant);
+          
+         //swiper.slideTo(this.selectedVariant.featured_image.position)
+        }
+      },
+      computed: {
+        image() {
+          return this.selectedImage
+        }
+      }
+    }).mount("#add-to-cart-section");
+  }
+</script>
