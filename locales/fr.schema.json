@@ -1449,6 +1449,14 @@
         "name": "Multicolonne"
       }
     },
+    "video": {
+      "name": "Video section",
+      "settings": {
+        "catch_phrase" : {
+          "label": "phrase d'accroche"
+        }
+      }
+    },
     "newsletter": {
       "name": "Inscription à la liste de diffusion",
       "settings": {

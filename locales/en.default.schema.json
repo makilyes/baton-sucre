@@ -1439,6 +1439,14 @@
         "name": "Multicolumn"
       }
     },
+    "video": {
+      "name": "Video section",
+      "settings": {
+        "catch_phrase" : {
+          "label": "phrase d'accroche"
+        }
+      }
+    },
     "newsletter": {
       "name": "Email signup",
       "settings": {
