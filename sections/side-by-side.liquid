@@ -23,9 +23,9 @@
       {% for block in section.blocks %}
         {% case block.type %}
             {% when 'heading' %}
-                <h2 class="title-left" style="color: {{ section.settings.background | color_modify: 'alpha', section.settings.opacity }} ;">{{ block.settings.heading }}</h2>
+                <h2 class="title-left" style="color: {{ section.settings.background }} ;">{{ block.settings.heading }}</h2>
             {% when 'text' %}
-                <h3 class="subtitle-left" style="color: {{ section.settings.background | color_modify: 'alpha', section.settings.opacity }} ;">{{ block.settings.text }}</h3>
+                <h3 class="subtitle-left" style="color: {{ section.settings.background }} ;">{{ block.settings.text }}</h3>
             {% when 'buttons' %}
                   <a{% if block.settings.button_link_1 != blank %} href="{{ block.settings.button_link_1 }}"{% endif %} class="button button-sidebyside-left{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link_1 == blank %} aria-disabled="true"{% endif %}>{{ block.settings.button_label_1 | escape }}</a>
         {% endcase %}
@@ -52,9 +52,9 @@
         {% for block in section.blocks %}
             {% case block.type %}
                 {% when 'heading' %}
-                    <h2 class="title-right" style="color: {{ section.settings.background | color_modify: 'alpha', section.settings.opacity }} ;">{{ block.settings.heading-2 }}</h2>
+                    <h2 class="title-right" style="color: {{ section.settings.background }} ;">{{ block.settings.heading-2 }}</h2>
                 {% when 'text' %}
-                    <h3 class="subtitle-right" style="color: {{ section.settings.background | color_modify: 'alpha', section.settings.opacity }} ;">{{ block.settings.text-2 }}</h3>
+                    <h3 class="subtitle-right" style="color: {{ section.settings.background }} ;">{{ block.settings.text-2 }}</h3>
                 {% when 'buttons' %}
                       <a{% if block.settings.button_link_2 != blank %} href="{{ block.settings.button_link_2 }}"{% endif %} class="button button-sidebyside-right{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link_2 == blank %} aria-disabled="true"{% endif %}>{{ block.settings.button_label_2 | escape }}</a>
             {% endcase %}
