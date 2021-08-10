@@ -1,5 +1,10 @@
+.review-title {
+    text-align: center;
+    font-weight: bold;
+    margin: 40px 0px;
+}
+
 .mySwiper {
-    background-color: #dfcaca;
     overflow: hidden;
     position: relative;
 

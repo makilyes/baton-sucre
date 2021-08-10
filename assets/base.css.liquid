@@ -807,14 +807,40 @@ summary::-webkit-details-marker {
 }
 
 /* component-grid */
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-  margin-left: -0.5rem;
-  padding: 0;
-  list-style: none;
+
+.collectionGrid {
+  display: grid;
+  grid-gap: 16px;
+  justify-items: stretch;
+  margin: 0 15px;
+  /* grid-template-columns: repeat(auto-fill,minmax(350px,1fr)); */
 }
+
+@media screen and (min-width: 1024px){
+  .collectionGrid {
+      grid-template-columns: repeat(auto-fill,minmax(320px,1fr))!important;
+  }
+  }
+
+@media screen and (min-width: 1500px){
+.collectionGrid {
+    grid-template-columns: repeat(auto-fill,minmax(480px,1fr))!important;
+}
+}
+
+@media screen and (max-width: 640px) {
+.collectionGrid {
+    grid-template-columns: 1fr;
+}
+}
+
+.collectionGrid__Cell {
+  background-color: antiquewhite;
+  position: relative;
+}
+
+
+
 
 @media screen and (min-width: 750px) {
   .grid {
@@ -825,10 +851,11 @@ summary::-webkit-details-marker {
 .grid__item {
   padding-left: 0.5rem;
   padding-bottom: 0.5rem;
-  width: calc(25% - 0.5rem * 3 / 4);
+  /* width: calc(25% - 0.5rem * 3 / 4); */
   max-width: 50%;
   flex-grow: 1;
   flex-shrink: 0;
+  background-color: beige;
 }
 
 @media screen and (min-width: 750px) {
@@ -860,7 +887,9 @@ summary::-webkit-details-marker {
 
 @media screen and (min-width: 990px) {
   .grid--quarter-max.grid--4-col-desktop .grid__item {
-    max-width: 25%;
+    max-width: 30%;
+    margin-right: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -874,9 +903,9 @@ summary::-webkit-details-marker {
 }
 
 @media screen and (min-width: 750px) {
-  .grid--3-col .grid__item {
+  /* .grid--3-col .grid__item {
     width: calc(33.33% - 1rem * 2 / 3);
-  }
+  } */
 }
 
 .grid--2-col .grid__item {
@@ -884,7 +913,7 @@ summary::-webkit-details-marker {
 }
 
 @media screen and (min-width: 750px) {
-  .grid--2-col .grid__item {
+  /* .grid--2-col .grid__item {
     width: calc(50% - 1rem / 2);
   }
 
@@ -898,11 +927,11 @@ summary::-webkit-details-marker {
 
   .grid--2-col-tablet .grid__item {
     width: calc(50% - 1rem / 2);
-  }
+  } */
 }
 
 @media screen and (min-width: 990px) {
-  .grid--4-col-desktop .grid__item {
+  /* .grid--4-col-desktop .grid__item {
     width: calc(25% - 1rem * 3 / 4);
   }
 
@@ -912,7 +941,7 @@ summary::-webkit-details-marker {
 
   .grid--2-col-desktop .grid__item {
     width: calc(50% - 1rem / 2);
-  }
+  } */
 }
 
 .grid__item--vertical-align {
@@ -998,12 +1027,12 @@ summary::-webkit-details-marker {
 .media model-viewer {
   display: block;
   max-width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
 }
+
 
 .media > img {
   object-fit: cover;

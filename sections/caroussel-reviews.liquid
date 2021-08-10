@@ -1,7 +1,8 @@
 {{ 'component-caroussel-reviews.css' | asset_url | stylesheet_tag }}
 
 
-<div class="mySwiper">
+<div class="mySwiper" style="background-color : {{ section.settings.backgroundcolor}};">
+  <h2 class="review-title" style="color : {{ section.settings.titlecolor }};">{{ section.settings.titlereview }}</h2>
     <div class="swiper-wrapper">
 
       {% for block in section.blocks %}
@@ -77,7 +78,7 @@
   "settings": [
     {
       "type": "text",
-      "id": "sectionname",
+      "id": "titlereview",
       "label": "Titre de la section",
       "default": "+500,000 utilisateurs actifs dans le monde"
     },
@@ -89,7 +90,7 @@
     },
 	{
        "type": "color",
-       "id": "bg",
+       "id": "backgroundcolor",
        "label": "Couleur de fond",
        "default": "#ffffff"
     }
