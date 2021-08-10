@@ -24,6 +24,7 @@
 .collection-product-count {
   margin-top: 0;
   font-size: 1.4rem;
+  margin-left: 5%;
 }
 
 @media screen and (min-width: 750px) {

@@ -11,7 +11,9 @@
     Usage:
     {% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-
+<div id= "card-wrapper">
+<!-- <template v-for="(product, index) in form.products">
+  ${product.title} -->
 <div class="card-wrapper">
   <a href="{{ product_card_product.url | default: '#' }}" class="full-unstyled-link">
     <span class="visually-hidden">{{ product_card_product.title | escape }}</span>
@@ -97,8 +99,87 @@
         {% render 'price', product: product_card_product, price_class: '' %}
       </div>
       <div class="collection__addToCart" style="background-color: {{ section.settings.background_card }}">
-          <a href="#" class="button">  Add To cart </a>
+          
+        <!-- <a href="#" class="button">  Add To cart </a> -->
+
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product_card_product.variants.first.id }}" />
+          <input type="submit" value="Add to cart" class="btn" />
+        </form>
+        {{ product_card_product.id }}
       </div> 
     </div>
   </a>
 </div>
+<!-- </template> -->
+</div>
+
+
+<script>
+ 
+  
+
+  if (document.querySelector("#card-wrapper")) {
+    const productForm = Vue.createApp({
+      delimiters: ["${", "}"],
+      data() {
+        return {
+          open: false,
+          variants: "",
+          selectedVariant: "",
+          selected: [],
+          selectedImage: "",
+          form: {
+            selections: "",
+            products: "",
+          },
+        };
+      },
+      created() {
+        axios.get("/collections/{{ collection.title }}/products.json").then((results) => {
+          // console.log(results);
+          this.form.products = results.data.products.map((product) => ({
+            
+            ...product,
+          }));
+          console.log(this.form.products);
+        })
+
+      },
+      methods: {
+        addToCart(event) {
+          event.preventDefault();
+
+          let selectedVariant;
+
+          this.variants.forEach((variant, i) => {
+            if (
+              variant.option1 === this.form.selections[0] &&
+              variant.option2 === this.form.selections[1] &&
+              variant.option3 === this.form.selections[2]
+            ) {
+              selectedVariant = variant;
+            }
+          });
+
+          let data = {
+            id: selectedVariant.id,
+            quantity: 1,
+          };
+
+          axios
+            .post("/cart/add.js", data)
+            .then((response) => {
+              store.getCart();
+            })
+            .then(() => {
+              toggleMiniCart.openCart();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }
+    }).mount("#card-wrapper");
+  }
+</script>

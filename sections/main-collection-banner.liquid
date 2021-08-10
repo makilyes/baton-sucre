@@ -2,7 +2,7 @@
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %}">
   <div class="collection-hero__inner">
-    <div class="collection-hero__text-wrapper">
+    <div class="collection-hero__text-wrapper {% if section.settings.vertical_alignment == "top" %} top {% elsif section.settings.vertical_alignment == "bottom" %} bottom {% elsif section.settings.vertical_alignment == "middle" %} middle {% else %} classic {% endif %} ">
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
@@ -54,7 +54,32 @@
       "default": false,
       "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
       "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignement",
+      "options": [
+      {
+        "value": "classic",
+        "label": "Normal"
+      },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "classic"
     }
   ]
 }
 {% endschema %}
+
