@@ -2,6 +2,10 @@
   margin: 0;
 }
 
+.product.product-grid {
+display: flex;
+}
+
 .product--no-media {
   max-width: 57rem;
   margin: 0 auto;

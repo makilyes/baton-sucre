@@ -191,9 +191,14 @@
   color: rgb(105, 105, 105) !important;
 }
 
-.card-information__wrapper {
+.card-information__wrapper.collection-card {
   width: 100%;
   position: absolute;
+  bottom: 110px;
+}
+
+.card-information__wrapper {
+  width: 100%;
   bottom: 110px;
 }
 
@@ -203,6 +208,18 @@
 }
 
 .collection__addToCart {
+  /* border: solid 1px rgb(149, 149, 149);
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  transform: translateX(-50%);
+  width: 90%; */
+}
+
+.collection__addToCart.collectionATC {
   border: solid 1px rgb(149, 149, 149);
   margin-left: 20px;
   margin-right: 20px;
@@ -217,7 +234,7 @@
 
 .mediaCollection {
   padding-bottom: 0 !important;
-  margin-bottom: 55%;
+  margin-bottom: 40%;
 }
 
 .collection__btnAddToCard {
@@ -275,7 +292,9 @@
 }
 
 
-
+/* .card-information {
+  position: relative;
+} */
 
 
 .card-information__wrapper > .price {

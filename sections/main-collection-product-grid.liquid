@@ -483,6 +483,12 @@
 
             <!-- </li> -->
           {%- endfor -%}
+          <form id="add-to-cart" @submit.prevent>
+            <button v-on:click.prevent="addToCart"  name="add" id="test" class="add-to-cart-button">
+            Add to cart
+          </button>
+          {{ product_card_product.variants.first.id }}
+          </form>
         <!-- </ul> -->
         </div>
         {%- if paginate.pages > 1 -%}
@@ -588,3 +594,81 @@
 
 
 
+<script>
+ 
+  
+
+  if (document.querySelector("#main-collection-filters")) {
+    const productForm = Vue.createApp({
+      delimiters: ["${", "}"],
+      data() {
+        return {
+          open: false,
+          variants: "",
+          selectedVariant: "",
+          selected: [],
+          selectedImage: "",
+          form: {
+            selections: "",
+            products: "",
+          },
+        };
+      },
+      created() {
+        axios.get("/collections/{{ collection.title }}/products.json").then((results) => {
+          // console.log(results);
+          this.form.products = results.data.products.map((product) => ({
+            
+            ...product,
+          }));
+          console.log(this.form.products);
+        })
+
+      },
+      methods: {
+        addToCart(event) {
+          event.preventDefault();
+          console.log("add to cart");
+
+          // let selectedVariant;
+
+          // this.variants.forEach((variant, i) => {
+          //   if (
+          //     variant.option1 === this.form.selections[0] &&
+          //     variant.option2 === this.form.selections[1] &&
+          //     variant.option3 === this.form.selections[2]
+          //   ) {
+          //     selectedVariant = variant;
+          //   }
+          // });
+
+          // let data = {
+          //   id: 41056229916835,
+          //   quantity: 1,
+          // };
+
+          // axios
+          //   .post("/cart/add.js", {
+          //     items: [
+          //       {
+          //       quantity: 1,
+          //       id: 41056229916835
+          //       }
+          //     ]
+          //   })
+          //   .then((response) => {
+          //     console.log("ma reponse");
+          //     console.log(response);
+          //     store.getCart();
+          //   })
+          //   .then(() => {
+          //     toggleMiniCart.openCart();
+          //   })
+          //   .catch((error) => {
+          //     console.log(error);
+          //   });
+        }
+      }
+    }).mount("#main-collection-filters");
+  }
+</script>
