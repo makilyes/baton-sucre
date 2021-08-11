@@ -7,7 +7,13 @@
   margin-bottom: 3rem;
 }
 
-.recommandation_product-grid {
+.list__recommendations {
   display: flex;
+  /* align-items: flex-end; */
+  list-style: none;
   flex-wrap: wrap;
+}
+
+.item__recommendations {
+  margin-right: 5%;
 }
