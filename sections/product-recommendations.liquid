@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-card-recommandation.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-product-grid.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'section-product-recommendations.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -13,22 +13,83 @@
 
 <product-recommendations class="product-recommendations page-width" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4">
   {% if recommendations.performed and recommendations.products_count > 0 %}
+  <form id="atc-recommendations">
+
     <h2 class="product-recommendations__heading">{{ section.settings.heading | escape }}</h2>
     <ul class=" list__recommendations{% if recommendations.products_count > 3 %} {% else %} {% endif %}" role="list">
+
       {% for recommendation in recommendations.products %}
         <li class="item__recommendations" style="background-color: {{ section.settings.background_card }}">
-          {% render 'product-card',
+          {% render 'product-card-recommandation',
             product_card_product: recommendation,
             media_size: section.settings.image_ratio,
             show_secondary_image: section.settings.show_secondary_image,
             add_image_padding: section.settings.add_image_padding,
             show_vendor: section.settings.show_vendor
           %}
+          <!-- <button class="button" v-on:submit.prevent="addToCartRecommandation({{ product.variants.first.id }})">
+            ATC
+          </button> -->
+  
         </li>
       {% endfor %}
+
     </ul>
+  </form>
+
   {% endif %}
 </product-recommendations>
+
+
+
+<script>
+  if (document.querySelector("#atc-recommendations")) {
+    const productForm = Vue.createApp({
+      delimiters: ["${", "}"],
+      data() {
+        return {
+          form: {
+            selections: "",
+            products: "",
+          },
+        };
+      },
+      created() {
+        axios.get("/collections/{{ collection.title }}/products.json").then((results) => {
+          this.form.products = results.data.products.map((product) => ({    
+            ...product,
+          }));
+        });
+        console.log("etape 1")
+      },
+      methods: {
+        addToCartRecommandation(id) {
+          event.preventDefault();
+
+          console.log("etape 2")
+
+          let data = {
+            id: id,
+            quantity: 1,
+          };
+          console.log(data);
+          axios
+            .post("/cart/add.js", data)
+            .then((response) => {
+              store.getCart();
+            })
+            .then(() => {
+              toggleMiniCart.openCart();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }
+    }).mount("#atc-recommendations");
+  }
+</script>
+
 
 {% javascript %}
   class ProductRecommendations extends HTMLElement {
@@ -60,6 +121,9 @@
 
   customElements.define('product-recommendations', ProductRecommendations);
 {% endjavascript %}
+
+
+
 
 {% schema %}
 {

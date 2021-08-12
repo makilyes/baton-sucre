@@ -8,11 +8,46 @@
 }
 
 .list__recommendations {
-  display: flex;
-  /* align-items: flex-end; */
-  list-style: none;
-  flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    list-style: none;  
 }
+
+@media screen and (min-width: 1500px) {
+  .list__recommendations {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      list-style: none;  
+  }
+}
+
+@media screen and (max-width: 976px) {
+  .list__recommendations {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      list-style: none;  
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .list__recommendations {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: 1fr;
+      grid-row-gap: 10px;
+      list-style: none;  
+  }
+}
+
 
 .item__recommendations {
   margin-right: 5%;

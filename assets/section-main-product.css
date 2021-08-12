@@ -6,6 +6,12 @@
 display: flex;
 }
 
+@media screen and (max-width: 989px) {
+  .product.product-grid {
+    display: block;
+    }
+}
+
 .product--no-media {
   max-width: 57rem;
   margin: 0 auto;
