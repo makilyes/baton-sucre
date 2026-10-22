@@ -109,7 +109,7 @@
     }} -->
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{'global.js' | asset_url | | script_tag }}
+    {{ 'global.js' | asset_url | script_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -119,7 +119,8 @@
     {%- endunless -%}
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
-  </head>
+    {% include 'judgeme_core' %}
+</head>
 
   <body>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -159,3 +160,13 @@
     </script>
   </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{{'global.js' | asset_url | | script_tag }}"
+  to: "{{ 'global.js' | asset_url | script_tag }}"
+  position: 4958..5000
+{% endcomment %}
